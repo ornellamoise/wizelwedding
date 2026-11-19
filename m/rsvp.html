@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSVP – The Wizel Wedding</title>
+<meta name="description" content="Ornella &amp; William — 27 et 28 juin 2027, Domaine du Mas de Rey, Camargue.">
+<link rel="icon" href="../assets/b2d0bdf4e4062ae8e8a1a064d01294f5.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;family=Hurricane&amp;family=Libre+Caslon+Condensed&amp;family=Playfair+Display&amp;family=Anybody:wdth,wght@112..150,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+.chk{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer}
+.box{flex:none;width:22px;height:22px;border:1px solid #000;box-sizing:border-box;display:inline-block;position:relative;background:transparent}
+.chk:checked + .box::after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;border:solid #C03325;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.chk:focus-visible + .box{outline:2px solid #C03325;outline-offset:2px}
+.strip3{display:flex;width:390px;margin:16px 0 32px;flex:none}
+.strip3 img{display:block;width:130px;height:190px;object-fit:cover;object-position:50% 50%;flex:none}
+.gate{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.step2{display:none;flex-direction:column;align-items:center;gap:20px;width:100%}
+.gate:checked ~ .step1{display:none}
+.gate:checked ~ .step2{display:flex;animation:stepIn .6s ease 1.7s both}
+.toast{display:none;position:absolute;left:50%;top:150px;width:240px;margin-left:-120px;box-sizing:border-box;padding:22px 16px;border:1px solid #000;background:#FCF7EC;color:#C03325;text-align:center;font-family:'Instrument Serif',serif;font-size:28px;line-height:32px;letter-spacing:0.03em;text-transform:uppercase;pointer-events:none;z-index:5}
+.gate:checked ~ .toast{display:block;animation:toast 1.9s ease both}
+.kk{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.lab{position:absolute;inset:0;cursor:default}
+.k1:checked ~ .step1 .l1,.k2:checked ~ .step1 .l2{display:none}
+.gate:checked ~ .toast.toast2{display:none !important}
+.toast.toast2{top:auto;bottom:24px;width:170px;margin-left:-85px;padding:12px 10px;font-size:19px;line-height:22px}
+.k3:checked ~ .toast2{display:block;animation:toast 2.3s ease both}
+@keyframes toast{0%{opacity:0;transform:scale(.85) translateY(10px)}12%{opacity:1;transform:scale(1.03)}20%{transform:scale(1)}82%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ans{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:150px;height:64px;border:1px solid #000;background:transparent;color:#C03325;font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer}
+.no{position:absolute;left:169px;top:11px;pointer-events:none;transition:left .3s cubic-bezier(.3,1.4,.5,1),top .3s cubic-bezier(.3,1.4,.5,1)}
+.cell{position:absolute;width:163px;height:86px}
+.c2{left:163px;top:0}.c3{left:0;top:86px}.c4{left:163px;top:86px}.c5{left:0;top:172px}.c6{left:163px;top:172px}
+.c2:hover ~ .no{left:6px;top:183px}
+.c5:hover ~ .no{left:169px;top:97px}
+.c4:hover ~ .no{left:6px;top:97px}
+.c3:hover ~ .no{left:169px;top:183px}
+.c6:hover ~ .no{left:169px;top:11px}
+.wrap:has(.gate:not(:checked)){justify-content:center;padding-top:110px !important;padding-bottom:30px !important}
+.qd{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.rest{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+.quiz{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.qd:checked ~ .step2 .quiz{display:none}
+.wrap:has(.gate:checked):has(.qd:not(:checked)) > img{display:none !important}
+.qd:not(:checked) ~ .step2 .rest{display:none}
+.qt{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:19px;line-height:24px;letter-spacing:0.01em;text-transform:uppercase;color:#000;text-align:center;white-space:nowrap}
+.q{width:100%;display:flex;flex-direction:column;border-top:1px solid rgba(43,24,18,0.14);padding-top:14px}
+.q p{margin:0 0 6px;font-family:'Instrument Serif',serif;font-size:19px;line-height:24px;color:#000}
+.q label{display:flex;align-items:center;gap:14px;position:relative;padding:8px 0;cursor:pointer;font-family:'Instrument Serif',serif;font-size:19px;line-height:23px;color:#C03325}
+.field::placeholder{color:rgba(43,24,18,0.45)}
+.field:focus{outline:none;border-color:#C03325}
+</style>
+
+<style>html,body{margin:0;background:#FCF7EC}#page{width:390px;margin:0 auto}</style>
+<script>
+(function(){var W=390,d=document.documentElement,desk=false;
+var vw=Math.min(screen.width||9999,window.innerWidth);
+var narrow=window.innerWidth<820;
+if(!location.search.includes('force')){
+ if(desk&&narrow){location.replace('../rsvp.html'+location.search+location.hash);return}
+ if(!desk&&!narrow){location.replace('../rsvp.html'+location.search+location.hash);return}}
+function fit(){var w=window.innerWidth,r=document.getElementById('page');
+ var z=(w<W||!desk&&w>W)?w/W:1; if(r)r.style.zoom=z;}
+addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
+</script>
+</head>
+<body>
+<div id="page">
+
+<div style="width: 390px; min-height: 1420px; position: relative; box-sizing: border-box; background: #FCF7EC; color: #2B1812; display: flex; flex-direction: column">
+
+<header style="padding: 28px 16px 0; display: flex; flex-direction: column; align-items: center; width: 390px; box-sizing: border-box; background-color: #FCF7EC">
+<img src="../assets/f4e677d60e4dc60d0e2543cf05ffc887.png" alt="O&amp;W — Wizel Wedding" style="display: block; width: 140px; height: 145px; margin: 0 0 16px">
+<nav aria-label="Navigation principale" style="display: flex; justify-content: center; gap: 4px; width: 357px; border-bottom: 1px solid rgba(43,24,18,0.14); height: 48px">
+<a href="programme.html" style="min-height: 44px; box-sizing: border-box; padding: 14px 12px; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 12px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase">Programme</a>
+<a href="hebergement.html" style="min-height: 44px; box-sizing: border-box; padding: 14px 12px; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 12px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase">Hébergement</a>
+<a href="rsvp.html" aria-current="page" style="min-height: 44px; box-sizing: border-box; padding: 14px 12px; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 12px; line-height: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: #C03325; border-bottom: 2px solid #C03325">RSVP</a>
+</nav>
+</header>
+
+<div class="wrap" style="padding: 36px 32px 56px; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 390px; box-sizing: border-box; background-color: #FCF7EC; position: relative; flex: 1">
+<img src="../assets/a7bfb5b7bf354756d86da75dbdcb105d.png" alt="Serez-vous des nôtres ?" style="display: block; width: 320px; height: 16px">
+<input class="gate" type="checkbox" id="oui" aria-hidden="true" tabindex="-1">
+<input class="qd" type="checkbox" id="qd" aria-hidden="true" tabindex="-1"><input class="kk k1" type="checkbox" id="k1" aria-hidden="true" tabindex="-1"><input class="kk k2" type="checkbox" id="k2" aria-hidden="true" tabindex="-1"><input class="kk k3" type="checkbox" id="k3" aria-hidden="true" tabindex="-1">
+<div class="toast" role="status">Bonne réponse&nbsp;!</div>
+<div class="toast toast2" role="status">Cliquez sur OUI</div>
+<div class="step1" style="position: relative; width: 326px; height: 260px; margin: 0">
+<label for="oui" class="ans" style="position: absolute; left: 6px; top: 11px; z-index: 2">Oui</label>
+<div class="cell c2"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c3"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c4"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c5"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c6"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div>
+<div class="ans no" aria-hidden="true">Non</div>
+</div>
+<form class="step2" onsubmit="return false">
+<div class="quiz">
+<label for="oui" style="align-self: flex-start; cursor: pointer; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #000000; border-bottom: 1px solid #000000; padding-bottom: 2px">← Retour</label>
+<h2 class="qt">Rapide QCM pour mériter votre place</h2>
+<div class="q"><p>1) Quelles sont les 2 professions de William&nbsp;?</p>
+<label><input class="chk" type="checkbox" name="q1" value="a"><span class="box"></span>A. Expert-comptable</label>
+<label><input class="chk" type="checkbox" name="q1" value="b"><span class="box"></span>B. Directeur de colonie de vacances</label>
+<label><input class="chk" type="checkbox" name="q1" value="c"><span class="box"></span>C. Conseiller municipal</label>
+<label><input class="chk" type="checkbox" name="q1" value="d"><span class="box"></span>D. Musicien</label></div>
+<div class="q"><p>2) Qui est le plus à même de quitter sa ville après le mariage&nbsp;?</p>
+<label><input class="chk" type="radio" name="q2" value="a"><span class="box"></span>A. Ornella</label>
+<label><input class="chk" type="radio" name="q2" value="b"><span class="box"></span>B. William</label></div>
+<div class="q"><p>3) Quelle est notre destination de voyage de noces&nbsp;?</p>
+<label><input class="chk" type="radio" name="q3" value="a"><span class="box"></span>A. L'île Maurice</label>
+<label><input class="chk" type="radio" name="q3" value="b"><span class="box"></span>B. Tahiti</label>
+<label><input class="chk" type="radio" name="q3" value="c"><span class="box"></span>C. Saint-Mandé, le paradis de William</label></div>
+<label for="qd" style="display: flex; align-items: center; justify-content: center; min-height: 40px; box-sizing: border-box; padding: 0 28px; border: 1px solid #000000; background: transparent; color: #000000; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer">Valider mes réponses</label>
+</div>
+<div class="rest">
+<label for="qd" style="align-self: flex-start; cursor: pointer; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #000000; border-bottom: 1px solid #000000; padding-bottom: 2px">← Retour</label>
+<p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 19px; line-height: 26px; text-align: center; color: #000000">Cochez les moments auxquels vous participerez.</p>
+
+<div style="width: 100%; display: flex; flex-direction: column; border-bottom: 1px solid rgba(43,24,18,0.14)">
+<label style="display: flex; align-items: center; gap: 16px; position: relative; width: 100%; padding: 18px 0; border-top: 1px solid rgba(43,24,18,0.14); cursor: pointer">
+<input class="chk" type="checkbox" name="mairie" value="oui"><span class="box"></span>
+<span style="font-family: 'Instrument Serif', serif; font-size: 25px; line-height: 30px; letter-spacing: 0.01em; text-transform: uppercase; color: #c03325">La Mairie</span>
+</label>
+<label style="display: flex; align-items: center; gap: 16px; position: relative; width: 100%; padding: 18px 0; border-top: 1px solid rgba(43,24,18,0.14); cursor: pointer">
+<input class="chk" type="checkbox" name="welcome" value="oui"><span class="box"></span>
+<span style="font-family: 'Instrument Serif', serif; font-size: 25px; line-height: 30px; letter-spacing: 0.01em; text-transform: uppercase; color: #c03325">La Welcome</span>
+</label>
+<label style="display: flex; align-items: center; gap: 16px; position: relative; width: 100%; padding: 18px 0; border-top: 1px solid rgba(43,24,18,0.14); cursor: pointer">
+<input class="chk" type="checkbox" name="houppa" value="oui"><span class="box"></span>
+<span style="font-family: 'Instrument Serif', serif; font-size: 25px; line-height: 30px; letter-spacing: 0.01em; text-transform: uppercase; color: #c03325">La Houppa</span>
+</label>
+<label style="display: flex; align-items: center; gap: 16px; position: relative; width: 100%; padding: 18px 0; border-top: 1px solid rgba(43,24,18,0.14); cursor: pointer">
+<input class="chk" type="checkbox" name="absent" value="oui"><span class="box"></span>
+<span style="font-family: 'Instrument Serif', serif; font-size: 25px; line-height: 30px; letter-spacing: 0.01em; text-transform: uppercase; color: #c03325">Aucun</span>
+</label>
+</div>
+<textarea class="field" name="mot" rows="5" placeholder="Écrire un mot aux mariés" aria-label="Écrire un mot aux mariés" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid #000000; border-radius: 0; background: transparent; color: #000000; font-family: 'Instrument Serif', serif; font-size: 17px; line-height: 24px; resize: none"></textarea>
+<button type="submit" style="margin-top: 4px; display: flex; align-items: center; justify-content: center; min-height: 40px; box-sizing: border-box; padding: 0 28px; border: 1px solid #000000; border-radius: 0; background: transparent; color: #000000; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer">Envoyer ma réponse</button>
+</div>
+</form>
+</div>
+
+<div class="strip3">
+<img src="../assets/61048befa4412ee644d9f3bf8158cb56.jpg" alt="Ornella et William devant un café"><img src="../assets/d9832cf1d13d3c07ea65d993ed1c2990.jpg" alt="Ornella et William dans l'herbe avec leurs amis"><img src="../assets/cc7de1b57f58bb8ad74d695ddb453902.jpg" alt="Ornella et William sur une banquette rouge">
+</div>
+<footer style="margin-top: auto; width: 390px; box-sizing: border-box; padding: 0 0 36px; display: flex; justify-content: center; background-color: #FCF7EC">
+<img src="../assets/5a14e1dca3646ccb84e988551879f066.png" alt="Wizel Wedding" style="display: block; width: 123px; height: auto">
+</footer>
+
+</div>
+
+</div>
+</body>
+</html>
