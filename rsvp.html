@@ -75,7 +75,7 @@ function place(){var r=document.getElementById('page'),s=document.querySelector(
 function fit0(){var w=window.innerWidth,r=document.getElementById('page');if(!r)return;
  var o=document.getElementById('oui'),zw=desk?Math.min(w/W,1):w/W;
  if(o&&!o.checked){r.style.zoom=1;var H=r.offsetHeight;r.style.zoom=Math.min(zw,window.innerHeight/H);}
- else r.style.zoom=desk?zw*0.88:zw;}
+ else r.style.zoom=desk?zw*0.72:zw*0.8;}
 addEventListener('DOMContentLoaded',function(){fit();var o=document.getElementById('oui');if(o)o.addEventListener('change',fit);});addEventListener('load',fit);addEventListener('resize',fit);})();
 </script>
 </head>
