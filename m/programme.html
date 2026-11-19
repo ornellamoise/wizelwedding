@@ -22,7 +22,7 @@ if(!location.search.includes('force')){
  if(desk&&narrow){location.replace('../programme.html'+location.search+location.hash);return}
  if(!desk&&!narrow){location.replace('../programme.html'+location.search+location.hash);return}}
 function fit(){var w=window.innerWidth,r=document.getElementById('page');
- var z=(w<W||!desk&&w>W)?w/W:1; if(r)r.style.zoom=z;}
+ var z=((w<W||!desk&&w>W)?w/W:1)*0.8; if(r)r.style.zoom=z;}
 addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </script>
 </head>
