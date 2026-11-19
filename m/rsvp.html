@@ -40,7 +40,8 @@ a{color:inherit;text-decoration:none}
 .c4:hover ~ .no{left:6px;top:97px}
 .c3:hover ~ .no{left:169px;top:183px}
 .c6:hover ~ .no{left:169px;top:11px}
-.wrap:has(.gate:not(:checked)){justify-content:center;padding-top:110px !important;padding-bottom:30px !important}
+.wrap:has(.gate:not(:checked)){justify-content:center;padding-top:24px !important;padding-bottom:12px !important}
+#page > div:has(.gate:not(:checked)){min-height:0 !important}
 .qd{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 .rest{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
 .quiz{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
@@ -63,9 +64,11 @@ var narrow=window.innerWidth<820;
 if(!location.search.includes('force')){
  if(desk&&narrow){location.replace('../rsvp.html'+location.search+location.hash);return}
  if(!desk&&!narrow){location.replace('../rsvp.html'+location.search+location.hash);return}}
-function fit(){var w=window.innerWidth,r=document.getElementById('page');
- var z=(w<W||!desk&&w>W)?w/W:1; if(r)r.style.zoom=z;}
-addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
+function fit(){var w=window.innerWidth,r=document.getElementById('page');if(!r)return;
+ var o=document.getElementById('oui'),zw=desk?Math.min(w/W,1):w/W;
+ if(o&&!o.checked){r.style.zoom=1;var H=r.offsetHeight;r.style.zoom=Math.min(zw,window.innerHeight/H);}
+ else r.style.zoom=desk?zw*0.88:zw;}
+addEventListener('DOMContentLoaded',function(){fit();var o=document.getElementById('oui');if(o)o.addEventListener('change',fit);});addEventListener('load',fit);addEventListener('resize',fit);})();
 </script>
 </head>
 <body>
