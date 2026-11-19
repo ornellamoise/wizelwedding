@@ -24,7 +24,7 @@ if(!location.search.includes('force')){
  if(desk&&narrow){location.replace('m/hebergement.html'+location.search+location.hash);return}
  if(!desk&&!narrow){location.replace('m/hebergement.html'+location.search+location.hash);return}}
 function fit(){var w=window.innerWidth,r=document.getElementById('page');
- var z=Math.min(w/W,1)*0.88; if(r)r.style.zoom=z;}
+ var z=Math.min(w/W,1)*0.72; if(r)r.style.zoom=z;}
 addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </script>
 </head>
