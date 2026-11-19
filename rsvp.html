@@ -94,7 +94,7 @@ addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 <div class="cell c2"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c3"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c4"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c5"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c6"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div>
 <div class="ans no" aria-hidden="true">Non</div>
 </div>
-<form class="step2" onsubmit="return false" style="width: 560px">
+<form class="step2" id="rsvp-form" method="post" data-endpoint="https://formspree.io/f/mzervqrv" style="width: 560px">
 <div class="quiz">
 <label for="oui" style="align-self: flex-start; cursor: pointer; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #000000; border-bottom: 1px solid #000000; padding-bottom: 2px">← Retour</label>
 <h2 class="qt">Rapide QCM pour mériter votre place</h2>
@@ -114,6 +114,10 @@ addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </div>
 <div class="rest">
 <label for="qd" style="align-self: flex-start; cursor: pointer; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #000000; border-bottom: 1px solid #000000; padding-bottom: 2px">← Retour</label>
+<input class="field" type="text" name="nom" required autocomplete="name" placeholder="Nom et prénom" aria-label="Nom et prénom" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1px solid #000000; border-radius: 0; background: transparent; color: #000000; font-family: 'Instrument Serif', serif; font-size: 20px; line-height: 28px">
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+<input type="hidden" name="_subject" value="Nouvelle réponse RSVP – The Wizel Wedding">
+
 <p style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 24px; line-height: 32px; text-align: center; color: #000000">Cochez les moments auxquels vous participerez.</p>
 <div style="width: 100%; display: flex; flex-direction: column; border-bottom: 1px solid rgba(43,24,18,0.14)">
 <label style="display: flex; align-items: center; gap: 20px; position: relative; width: 100%; padding: 20px 0; border-top: 1px solid rgba(43,24,18,0.14); cursor: pointer">
@@ -136,6 +140,8 @@ addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 <textarea class="field" name="mot" rows="5" placeholder="Écrire un mot aux mariés" aria-label="Écrire un mot aux mariés" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1px solid #000000; border-radius: 0; background: transparent; color: #000000; font-family: 'Instrument Serif', serif; font-size: 20px; line-height: 28px; resize: none"></textarea>
 <button type="submit" style="margin-top: 6px; display: flex; align-items: center; justify-content: center; min-height: 46px; box-sizing: border-box; padding: 0 36px; border: 1px solid #000000; border-radius: 0; background: transparent; color: #000000; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer">Envoyer ma réponse</button>
 </div>
+<p class="merci" role="status" style="display:none;margin:40px 0;text-align:center;font-family:'Instrument Serif',serif;font-size:28px;line-height:1.3;color:#C03325;text-transform:uppercase">Merci&nbsp;!<br>Votre réponse a bien été envoyée.<br>À très vite.</p>
+<p class="err" role="alert" style="display:none;margin:0;text-align:center;font-family:'Instrument Serif',serif;font-size:18px;color:#C03325">Oups, l'envoi a échoué. Merci de réessayer.</p>
 </form>
 </div>
 <div class="strip" aria-label="Photos d'Ornella et William" style="width: 1435px; overflow: hidden; margin: 24px 0 44px; flex: none; height: 362px">
@@ -149,5 +155,13 @@ addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </div>
 
 </div>
+<script>
+(function(){var f=document.getElementById('rsvp-form');if(!f)return;
+f.addEventListener('submit',function(e){e.preventDefault();
+ var b=f.querySelector('button[type=submit]'),err=f.querySelector('.err');err.style.display='none';b.disabled=true;
+ fetch(f.dataset.endpoint,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+ .then(function(r){if(!r.ok)throw 0;f.querySelector('.rest').style.display='none';f.querySelector('.merci').style.display='block';})
+ .catch(function(){err.style.display='block';b.disabled=false;});});})();
+</script>
 </body>
 </html>
