@@ -13,6 +13,7 @@ body{margin:0}
 a{color:inherit;text-decoration:none}
 section a[href="#"]{margin-top:auto !important}
 section[style*="width: 400px"]{width:auto !important;flex:1 1 0}
+html,body{overflow-x:hidden}
 </style>
 
 <style>html,body{margin:0;background:#FCF7EC}#page{width:1440px;margin:0 auto}</style>
@@ -24,7 +25,7 @@ if(!location.search.includes('force')){
  if(desk&&narrow){location.replace('m/programme.html'+location.search+location.hash);return}
  if(!desk&&!narrow){location.replace('m/programme.html'+location.search+location.hash);return}}
 function fit(){var w=window.innerWidth,r=document.getElementById('page');
- var z=Math.min(w/W,1)*0.72; if(r)r.style.zoom=z;}
+ var z=Math.min(w/W,1)*0.72; if(r)r.style.zoom=z;var lw=w/z,m=-(lw-W)/2;document.querySelectorAll('.fullline').forEach(function(e){e.style.width=lw+'px';e.style.marginLeft=m+'px'});document.querySelectorAll('.fl').forEach(function(e){e.style.left=m+'px';e.style.right=m+'px'});}
 addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </script>
 </head>
@@ -43,8 +44,9 @@ addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 <section style="padding: 52px 0 28px; display: flex; flex-direction: column; align-items: center; width: 1440px; box-sizing: border-box; background-color: #FCF7EC">
 <img src="assets/852d06d06750de48248e465d3a545619.png" alt="Domaine du Mas de Rey, Camargue, France" style="display: block; width: 520px; height: 62px">
 </section>
-<img src="assets/d8d6c20e81c7ffe97624021d245402f3.png" alt="Dessin à l'encre de la fontaine du Domaine du Mas de Rey" style="display: block; margin: 0 auto 64px; width: 666px; height: 409px; object-fit: cover; object-position: 0% 50%; object-view-box: inset(4.2191% 2.3962% 4.2191% 0%)">
-<div style="width: 1227px; margin: 0 auto; border-top: 1px solid #C03325; display: flex; padding-top: 44px; height: 466px">
+<img src="assets/d8d6c20e81c7ffe97624021d245402f3.png" alt="Dessin à l'encre de la fontaine du Domaine du Mas de Rey" style="display: block; margin: 0 auto 64px; width: 740px; height: 455px; object-fit: cover; object-position: 0% 50%; object-view-box: inset(4.2191% 2.3962% 4.2191% 0%)">
+<div class="fullline" aria-hidden="true" style="height: 1px; width: 1440px; background: #C03325"></div>
+<div style="width: 1227px; margin: 0 auto; display: flex; padding-top: 44px; height: 466px">
 <section style="width: 400px; box-sizing: border-box; padding: 20px 36px 8px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
 <div style="height: 150px; display: flex; align-items: flex-end; justify-content: center"><img src="assets/139da0f01cb22fb4d3e82af9393a6e01.png" alt="" style="display: block; width: 230px; height: 127px"></div>
 <h2 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; line-height: 44px; letter-spacing: 0.01em; text-transform: uppercase; color: #c03325">La Mairie</h2>
