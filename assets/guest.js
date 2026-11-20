@@ -17,8 +17,7 @@ function rsvp(){
  var t=document.createElement('input');t.type='hidden';t.name='telephone';t.value=guest.t||'';f.appendChild(t);
 }
 
-function gate(){
- if(guest||!WORKER_URL)return;
+function open_(){
  var css=document.createElement('style');
  css.textContent='#wwg{position:fixed;inset:0;z-index:99999;background:#FCF7EC;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;text-align:center;color:#2B1812}'+
  '#wwg h1{margin:0 0 10px;font:400 44px/1.1 "Instrument Serif",serif;letter-spacing:.01em;text-transform:uppercase;color:#C03325}'+
@@ -39,10 +38,17 @@ function gate(){
   .then(function(r){if(r.status===404)throw 404;if(!r.ok)throw 0;return r.json()})
   .then(function(g){guest={p:g.prenom,f:g.nom,t:tel};save(guest);
    form.innerHTML='<h1>Bienvenue '+String(g.prenom).replace(/[<>&"]/g,'')+'</h1>';
-   setTimeout(function(){location.reload()},1600);})
+   setTimeout(function(){location.href='programme.html'},1600);})
   .catch(function(c){btn.disabled=false;err.textContent=c===404?'Numéro non reconnu. Vérifiez-le ou contactez Ornella et William.':'Un problème est survenu, réessayez.';});
  });
 }
-gate();
+function init(){
+ if(guest||!WORKER_URL)return;
+ var home=/(^|\/)(index\.html)?$/.test(location.pathname);
+ if(!home){location.replace('index.html');return}
+ var a=document.querySelector('.btn-in a');if(!a)return;
+ a.textContent="Je m'identifie";a.addEventListener('click',function(e){e.preventDefault();open_();});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rsvp);else rsvp();
 })();
