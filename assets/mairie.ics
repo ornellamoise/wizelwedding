@@ -6,9 +6,9 @@ BEGIN:VEVENT
 UID:mairie-2027@thewizelwedding.fr
 DTSTAMP:20261120T000000Z
 DTSTART;TZID=Europe/Paris:20270624T153000
-DTEND;TZID=Europe/Paris:20270624T180000
+DTEND;TZID=Europe/Paris:20270624T213000
 SUMMARY:La Mairie – Mariage Ornella & William
 LOCATION:Mairie de Saint-Mandé
-DESCRIPTION:Cérémonie civile suivie d'un cocktail dans la salle des fêtes de la mairie.
+DESCRIPTION:Cérémonie civile suivie d'un cocktail festif dans la salle des fêtes de la mairie, jusqu'à 21h30.
 END:VEVENT
 END:VCALENDAR

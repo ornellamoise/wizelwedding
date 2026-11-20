@@ -6,7 +6,7 @@ BEGIN:VEVENT
 UID:welcome-party-2027@thewizelwedding.fr
 DTSTAMP:20261120T000000Z
 DTSTART;TZID=Europe/Paris:20270627T173000
-DTEND;TZID=Europe/Paris:20270627T233000
+DTEND;TZID=Europe/Paris:20270628T000000
 SUMMARY:Welcome Party – Mariage Ornella & William
 LOCATION:Domaine du Mas de Rey, Camargue, France
 DESCRIPTION:Welcome party au Domaine du Mas de Rey.
