@@ -68,6 +68,7 @@ a{color:inherit;text-decoration:none}
 .strip .track{width:100% !important}.strip .track img{flex:1 1 0 !important;width:0 !important;min-width:0}
 html,body{overflow-x:hidden}
 .step1{zoom:.78}
+.strip3{margin-top:8px !important;margin-bottom:14px !important}
 </style>
 
 <style>html,body{margin:0;background:#FCF7EC}#page{width:390px;margin:0 auto}</style>
@@ -82,8 +83,7 @@ function fit(){fit0();place();}
 function place(){var r=document.getElementById('page'),s=document.querySelector('.strip3,.strip');if(!r||!s)return;var z=parseFloat(r.style.zoom)||1,lw=window.innerWidth/z;var g=14/z;document.querySelectorAll('.quiz,.rest').forEach(function(q){q.style.alignSelf='flex-start';q.style.width=(lw-2*g)+'px';q.style.marginLeft=(-(lw-W)/2+g-32)+'px';});s.style.width=lw+'px';s.style.marginLeft=(-(lw-W)/2)+'px';}
 function fit0(){var w=window.innerWidth,r=document.getElementById('page');if(!r)return;
  var o=document.getElementById('oui'),zw=desk?Math.min(w/W,1):w/W;
- if(o&&!o.checked){r.style.zoom=1;var H=r.offsetHeight;r.style.zoom=Math.min(zw,window.innerHeight/H);}
- else r.style.zoom=desk?zw*0.72:zw*0.8;}
+ r.style.zoom=desk?zw*0.72:zw*0.8;}
 addEventListener('DOMContentLoaded',function(){fit();var o=document.getElementById('oui');if(o)o.addEventListener('change',fit);});addEventListener('load',fit);addEventListener('resize',fit);})();
 </script>
 </head>
