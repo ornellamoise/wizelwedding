@@ -1,7 +1,7 @@
 /* Identification des invités par numéro de téléphone.
    Tant que WORKER_URL est vide, le site reste ouvert à tous (rien ne change). */
 (function(){
-var WORKER_URL='';
+var WORKER_URL='https://invites.ornella-moise.workers.dev/';
 var KEY='ww_guest';
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
 function save(g){try{localStorage.setItem(KEY,JSON.stringify(g))}catch(e){}}
