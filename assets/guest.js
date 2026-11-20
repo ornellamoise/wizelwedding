@@ -32,7 +32,7 @@ function rsvp(){
    var cap=wrap.previousElementSibling;if(cap&&cap.tagName==='P')cap.textContent='Cochez les moments auxquels chacun participera.';
    var h2=document.createElement('input');h2.type='hidden';h2.name='Personnes';h2.value=people.join(', ');f.appendChild(h2);
    var st=document.createElement('style');
-   st.textContent='.wwfam{width:100%;display:flex;flex-direction:column}.wwp{padding:22px 0 18px;border-top:1px solid rgba(43,24,18,.14)}.wwfam .wwp:last-child{border-bottom:1px solid rgba(43,24,18,.14)}.wwn{font-family:"Instrument Serif",serif;font-size:31px;line-height:34px;letter-spacing:.02em;text-transform:uppercase;color:#000;margin:0 0 14px;text-align:center}.wwg2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.wwo{display:flex;align-items:center;gap:14px;position:relative;padding:10px 0;cursor:pointer}.wwl{font-family:"Instrument Serif",serif;font-size:24px;line-height:28px;letter-spacing:.01em;text-transform:uppercase;color:#C03325}';
+   st.textContent='.wwfam{width:100%;display:flex;flex-direction:column}.wwp{padding:22px 0 18px;border-top:1px solid rgba(43,24,18,.14)}.wwfam .wwp:last-child{border-bottom:1px solid rgba(43,24,18,.14)}.wwn{font-family:"Instrument Serif",serif;font-size:24px;line-height:28px;letter-spacing:.02em;text-transform:uppercase;color:#000;margin:0 0 14px;text-align:center}.wwg2{display:grid;grid-template-columns:auto auto;justify-content:space-between;gap:6px 18px}.wwo{display:flex;align-items:center;gap:14px;position:relative;padding:10px 0;cursor:pointer}.wwl{font-family:"Instrument Serif",serif;font-size:24px;line-height:28px;letter-spacing:.01em;text-transform:uppercase;color:#C03325}';
    document.head.appendChild(st);
   }
  }
