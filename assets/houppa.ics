@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Wizel Wedding//FR
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:houppa-2027@thewizelwedding.fr
+DTSTAMP:20261120T000000Z
+DTSTART;TZID=Europe/Paris:20270628T170000
+DTEND;TZID=Europe/Paris:20270629T030000
+SUMMARY:La Houppa – Mariage Ornella & William
+LOCATION:Domaine du Mas de Rey, Camargue, France
+DESCRIPTION:Cérémonie sous la houppa, suivie du dîner et de la soirée au Mas de Rey.
+END:VEVENT
+END:VCALENDAR
