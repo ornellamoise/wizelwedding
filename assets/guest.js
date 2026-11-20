@@ -2,7 +2,7 @@
    Tant que WORKER_URL est vide, le site reste ouvert à tous (rien ne change). */
 (function(){
 var WORKER_URL='https://invites.ornella-moise.workers.dev/';
-var KEY='ww_guest';
+var KEY='ww_guest2';
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
 function save(g){try{localStorage.setItem(KEY,JSON.stringify(g))}catch(e){}}
 var guest=load();
@@ -15,6 +15,28 @@ function rsvp(){
  var p=n.previousElementSibling;
  if(p&&p.tagName==='P'){p.textContent='Réponse de '+(guest.f||guest.p);p.style.textTransform='uppercase';}
  var t=document.createElement('input');t.type='hidden';t.name='telephone';t.value=guest.t||'';f.appendChild(t);
+ var acc=guest.a||[];
+ if(acc.length){
+  var first=f.querySelector('input[name=mairie]');var list=first&&first.closest('div');
+  if(list){
+   var people=[guest.p].concat(acc),ev=[['Mairie','La Mairie'],['Welcome','La Welcome'],['Houppa','La Houppa'],['Aucun','Aucun']];
+   var esc=function(x){return String(x).replace(/[<>&"]/g,'')};
+   var wrap=document.createElement('div');wrap.className='wwfam';
+   people.forEach(function(nm){
+    var b=document.createElement('div');b.className='wwp';
+    var h='<div class="wwn">'+esc(nm)+'</div><div class="wwg2">';
+    ev.forEach(function(e){h+='<label class="wwo"><input class="chk" type="checkbox" name="Présence – '+esc(nm)+'" value="'+e[0]+'"><span class="box"></span><span class="wwl">'+e[1]+'</span></label>'});
+    b.innerHTML=h+'</div>';wrap.appendChild(b);
+   });
+   list.parentNode.replaceChild(wrap,list);
+   var cap=wrap.previousElementSibling;if(cap&&cap.tagName==='P')cap.textContent='Cochez les moments auxquels chacun participera.';
+   var h2=document.createElement('input');h2.type='hidden';h2.name='Personnes';h2.value=people.join(', ');f.appendChild(h2);
+   var st=document.createElement('style');
+   st.textContent='.wwfam{width:100%;display:flex;flex-direction:column}.wwp{padding:22px 0 18px;border-top:1px solid rgba(43,24,18,.14)}.wwfam .wwp:last-child{border-bottom:1px solid rgba(43,24,18,.14)}.wwn{font-family:"Instrument Serif",serif;font-size:31px;line-height:34px;letter-spacing:.02em;text-transform:uppercase;color:#000;margin:0 0 14px;text-align:center}.wwg2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.wwo{display:flex;align-items:center;gap:14px;position:relative;padding:10px 0;cursor:pointer}.wwl{font-family:"Instrument Serif",serif;font-size:24px;line-height:28px;letter-spacing:.01em;text-transform:uppercase;color:#C03325}';
+   document.head.appendChild(st);
+  }
+ }
+
 }
 
 function open_(a){
@@ -32,7 +54,7 @@ function open_(a){
   btn.disabled=true;err.textContent='';
   fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tel:tel})})
   .then(function(r){if(r.status===404)throw 404;if(!r.ok)throw 0;return r.json()})
-  .then(function(g){guest={p:g.prenom,f:g.nom,t:tel};save(guest);
+  .then(function(g){guest={p:g.prenom,f:g.nom,t:tel,a:g.acc||[]};save(guest);
    location.href='programme.html';})
   .catch(function(c){btn.disabled=false;err.textContent=c===404?'Numéro non reconnu. Contactez Ornella et William.':'Un problème est survenu, réessayez.';});
  });

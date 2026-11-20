@@ -23,6 +23,6 @@ export default {
     const key = tel.replace(/\D/g, "").slice(-9);
     const g = key.length === 9 ? GUESTS[key] : null;
     if (!g) return new Response(JSON.stringify({ ok: false }), { status: 404, headers: { ...h, "Content-Type": "application/json" } });
-    return new Response(JSON.stringify({ ok: true, prenom: g[0], nom: g[1] }), { headers: { ...h, "Content-Type": "application/json" } });
+    return new Response(JSON.stringify({ ok: true, prenom: g[0], nom: g[1], acc: g[2] || [] }), { headers: { ...h, "Content-Type": "application/json" } });
   },
 };

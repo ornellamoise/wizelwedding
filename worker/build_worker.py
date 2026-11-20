@@ -12,6 +12,7 @@ def col(*names):
 ip = col("prenom")
 inn = next((i for i, h in enumerate(head) if "nom" in h and "prenom" not in h), None)
 it = col("tel", "phone", "portable", "mobile")
+ia = next((i for i, h in enumerate(head) if "accompagn" in h), None)
 g, bad = {}, []
 for r in rows[1:]:
     if not r or not r[ip]: continue
@@ -20,7 +21,8 @@ for r in rows[1:]:
     k = d[-9:]
     if k in g: print("Doublon de numéro :", d, g[k][0], "/", r[ip]); continue
     p = str(r[ip]).strip(); n = (p + " " + str((r[inn] if inn is not None else "") or "").strip()).strip()
-    g[k] = [p, n]
+    acc = [a.strip() for a in str(r[ia] or "").replace(";", ",").split(",") if a.strip()] if ia is not None else []
+    g[k] = [p, n, acc]
 src = open(__file__.replace("build_worker.py", "worker-template.js"), encoding="utf-8").read()
 out = src.replace("/*GUESTS*/{}/*END*/", json.dumps(g, ensure_ascii=False))
 open("worker.js", "w", encoding="utf-8").write(out)
