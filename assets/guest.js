@@ -42,7 +42,7 @@ function welcome(){
  var h=document.querySelector('header');if(!h)return;
  var m=location.pathname.indexOf('/m/')>=0,d=document.createElement('div');
  d.textContent='Bienvenue '+(guest.p||'');
- d.style.cssText="position:relative;z-index:1;text-align:center;font-family:'Inter Tight',system-ui,sans-serif;text-transform:uppercase;color:#C03325;"+(m?'font-size:12px;line-height:16px;letter-spacing:.14em;padding-top:27px;margin-bottom:-9px':'font-size:16px;line-height:20px;letter-spacing:.16em;padding-top:38px;margin-bottom:-14px');
+ d.style.cssText="position:relative;z-index:1;text-align:center;font-family:'Inter Tight',system-ui,sans-serif;text-transform:uppercase;color:#C03325;"+(m?'font-size:16px;line-height:21px;letter-spacing:.14em;padding-top:24.5px;margin-bottom:-11.5px':'font-size:21px;line-height:27px;letter-spacing:.16em;padding-top:34.5px;margin-bottom:-17.5px');
  h.parentNode.insertBefore(d,h.nextSibling);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',welcome);else welcome();
