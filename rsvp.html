@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}
 .toast.toast2{top:auto;bottom:36px;width:250px;margin-left:-125px;padding:16px 10px;font-size:26px;line-height:30px}
 .k3:checked ~ .toast2{display:block;animation:toast 1.9s ease both}
 .nope .toast:not(.toast2){display:none !important}
-.nope .gate:checked ~ .step2{animation-delay:0s}
+.nope .gate:checked ~ .toast.toast2{display:block !important;top:230px;bottom:auto;width:300px;margin-left:-150px;padding:26px 18px;font-size:34px;line-height:38px;animation:toast 1.9s ease both}
 @keyframes toast{0%{opacity:0;transform:scale(.85) translateY(10px)}12%{opacity:1;transform:scale(1.03)}20%{transform:scale(1)}82%{opacity:1}100%{opacity:0;visibility:hidden}}
 @keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .ans{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:200px;height:76px;border:1px solid #000;background:transparent;color:#C03325;font-family:'Instrument Serif',serif;font-size:36px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer}
@@ -188,6 +188,6 @@ f.addEventListener('submit',function(e){e.preventDefault();
  .then(function(r){if(!r.ok)throw 0;f.querySelector('.rest').style.display='none';f.querySelector('.merci').style.display='block';})
  .catch(function(){err.style.display='block';b.disabled=false;});});})();
 </script>
-<script>(function(){var k=document.getElementById("k3");if(!k)return;k.addEventListener("change",function(){if(!k.checked)return;setTimeout(function(){document.documentElement.classList.add("nope");document.getElementById("qd").checked=true;document.getElementById("oui").checked=true;},1600);});var o=document.getElementById("oui");o.addEventListener("change",function(){var d=document.documentElement;if(!o.checked&&d.classList.contains("nope")){d.classList.remove("nope");document.getElementById("qd").checked=false;}});})();</script>
+<script>(function(){var k=document.getElementById("k3");if(!k)return;k.addEventListener("change",function(){if(!k.checked)return;document.documentElement.classList.add("nope");document.getElementById("qd").checked=true;document.getElementById("oui").checked=true;});var o=document.getElementById("oui");o.addEventListener("change",function(){var d=document.documentElement;if(!o.checked&&d.classList.contains("nope")){d.classList.remove("nope");document.getElementById("qd").checked=false;}});})();</script>
 </body>
 </html>
