@@ -31,11 +31,19 @@ function open_(a){
   fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tel:tel})})
   .then(function(r){if(r.status===404)throw 404;if(!r.ok)throw 0;return r.json()})
   .then(function(g){guest={p:g.prenom,f:g.nom,t:tel};save(guest);
-   form.innerHTML='<div style="font:400 '+(mob?'30px':'40px')+' \'Instrument Serif\',serif;letter-spacing:.01em;text-transform:uppercase;color:#C03325;text-align:center">Bienvenue '+String(g.prenom).replace(/[<>&"]/g,'')+'</div>';
-   setTimeout(function(){location.href='programme.html'},1500);})
+   location.href='programme.html';})
   .catch(function(c){btn.disabled=false;err.textContent=c===404?'Numéro non reconnu. Contactez Ornella et William.':'Un problème est survenu, réessayez.';});
  });
 }
+function welcome(){
+ if(!guest||!/programme\.html/.test(location.pathname))return;
+ var h=document.querySelector('header');if(!h)return;
+ var m=location.pathname.indexOf('/m/')>=0,d=document.createElement('div');
+ d.textContent='Bienvenue '+(guest.p||'');
+ d.style.cssText="text-align:center;font-family:'Inter Tight',system-ui,sans-serif;text-transform:uppercase;color:#C03325;"+(m?'font-size:12px;line-height:16px;letter-spacing:.14em;padding-top:18px':'font-size:16px;line-height:20px;letter-spacing:.16em;padding-top:24px');
+ h.parentNode.insertBefore(d,h.nextSibling);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',welcome);else welcome();
 function init(){
  if(guest||!WORKER_URL)return;
  var home=/(^|\/)(index\.html)?$/.test(location.pathname);
