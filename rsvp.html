@@ -43,8 +43,10 @@ a{color:inherit;text-decoration:none}
 .lab{position:absolute;inset:0;cursor:default}
 .k1:checked ~ .step1 .l1,.k2:checked ~ .step1 .l2{display:none}
 .gate:checked ~ .toast.toast2{display:none !important}
-.toast.toast2{top:auto;bottom:36px;width:210px;margin-left:-105px;padding:14px 10px;font-size:22px;line-height:26px}
-.k3:checked ~ .toast2{display:block;animation:toast 2.3s ease both}
+.toast.toast2{top:auto;bottom:36px;width:250px;margin-left:-125px;padding:16px 10px;font-size:26px;line-height:30px}
+.k3:checked ~ .toast2{display:block;animation:toast 1.9s ease both}
+.nope .toast:not(.toast2){display:none !important}
+.nope .gate:checked ~ .step2{animation-delay:0s}
 @keyframes toast{0%{opacity:0;transform:scale(.85) translateY(10px)}12%{opacity:1;transform:scale(1.03)}20%{transform:scale(1)}82%{opacity:1}100%{opacity:0;visibility:hidden}}
 @keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .ans{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:200px;height:76px;border:1px solid #000;background:transparent;color:#C03325;font-family:'Instrument Serif',serif;font-size:36px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer}
@@ -110,7 +112,7 @@ addEventListener('DOMContentLoaded',function(){fit();var o=document.getElementBy
 <input class="gate" type="checkbox" id="oui" aria-hidden="true" tabindex="-1">
 <input class="qd" type="checkbox" id="qd" aria-hidden="true" tabindex="-1"><input class="kk k1" type="checkbox" id="k1" aria-hidden="true" tabindex="-1"><input class="kk k2" type="checkbox" id="k2" aria-hidden="true" tabindex="-1"><input class="kk k3" type="checkbox" id="k3" aria-hidden="true" tabindex="-1">
 <div class="toast" role="status">Bonne réponse&nbsp;!</div>
-<div class="toast toast2" role="status">Cliquez sur OUI</div>
+<div class="toast toast2" role="status">Mauvaise réponse</div>
 <div class="step1" style="position: relative; width: 560px; height: 300px; margin: 12px 0 0">
 <label for="oui" class="ans" style="position: absolute; left: 40px; top: 12px; z-index: 2">Oui</label>
 <div class="cell c2"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c3"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c4"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c5"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div><div class="cell c6"><label for="k3" class="lab"></label><label for="k2" class="lab l2"></label><label for="k1" class="lab l1"></label></div>
@@ -186,5 +188,6 @@ f.addEventListener('submit',function(e){e.preventDefault();
  .then(function(r){if(!r.ok)throw 0;f.querySelector('.rest').style.display='none';f.querySelector('.merci').style.display='block';})
  .catch(function(){err.style.display='block';b.disabled=false;});});})();
 </script>
+<script>(function(){var k=document.getElementById("k3");if(!k)return;k.addEventListener("change",function(){if(!k.checked)return;setTimeout(function(){document.documentElement.classList.add("nope");document.getElementById("qd").checked=true;document.getElementById("oui").checked=true;},1600);});var o=document.getElementById("oui");o.addEventListener("change",function(){var d=document.documentElement;if(!o.checked&&d.classList.contains("nope")){d.classList.remove("nope");document.getElementById("qd").checked=false;}});})();</script>
 </body>
 </html>
