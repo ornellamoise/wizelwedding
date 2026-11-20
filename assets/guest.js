@@ -13,7 +13,7 @@ function rsvp(){
  var n=f.querySelector('input[name=nom]');if(!n)return;
  n.value=guest.f||guest.p;n.type='hidden';n.removeAttribute('required');
  var p=n.previousElementSibling;
- if(p&&p.tagName==='P'){p.textContent='Réponse de '+(guest.f||guest.p)+'.';}
+ if(p&&p.tagName==='P'){p.textContent='Réponse de '+(guest.f||guest.p);p.style.textTransform='uppercase';}
  var t=document.createElement('input');t.type='hidden';t.name='telephone';t.value=guest.t||'';f.appendChild(t);
 }
 
