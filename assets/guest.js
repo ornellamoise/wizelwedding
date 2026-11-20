@@ -19,9 +19,11 @@ function rsvp(){
 
 function open_(a){
  var box=a.parentNode,mob=!!box.style.position;
- var fs=mob?'12.5px':'15px',h=mob?'40px':'60px';
- var st='box-sizing:border-box;border:1px solid #000;border-radius:0;background:transparent;color:#000;';
- box.innerHTML='<form novalidate style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%"><input type="tel" inputmode="tel" autocomplete="tel" placeholder="Votre numéro de téléphone" aria-label="Numéro de téléphone" style="'+st+'width:'+(mob?'260px':'340px')+';max-width:100%;height:'+h+';padding:0 16px;text-align:center;font:400 '+(mob?'16px':'18px')+' \'Inter Tight\',system-ui,sans-serif"><button type="submit" style="'+st+'min-width:'+(mob?'200px':'280px')+';height:'+h+';padding:0 28px;cursor:pointer;font-family:Anybody,system-ui,sans-serif;font-variation-settings:\'wdth\' 125;font-weight:500;font-size:'+fs+';letter-spacing:.14em;text-transform:uppercase">Entrer</button><div class="e" role="alert" style="min-height:0;font:400 '+(mob?'15px':'17px')+' \'Instrument Serif\',serif;color:#C03325;text-align:center"></div></form>';
+ var fs=mob?'12.5px':'15px',h=mob?'42px':'60px',w=mob?'250px':'400px';
+ var ff="font-family:Anybody,system-ui,sans-serif;font-variation-settings:'wdth' 125;font-weight:500;font-size:"+fs+";letter-spacing:.14em;text-transform:uppercase;";
+ var st='box-sizing:border-box;border:1px solid #000;border-radius:0;background:transparent;color:#000;width:'+w+';max-width:100%;height:'+h+';padding:0 16px;'+ff;
+ if(!document.getElementById('wwph')){var c=document.createElement('style');c.id='wwph';c.textContent='.btn-in input::placeholder{color:#000;opacity:.55}.btn-in input:focus{outline:2px solid #C03325;outline-offset:2px}';document.head.appendChild(c);}
+ box.innerHTML='<form novalidate style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%"><input type="tel" inputmode="tel" autocomplete="tel" placeholder="Entrez votre numéro" aria-label="Numéro de téléphone" style="'+st+'text-align:center"><button type="submit" style="'+st+'cursor:pointer;text-align:center">Entrer</button><div class="e" role="alert" style="min-height:0;font:400 '+(mob?'15px':'17px')+' \'Instrument Serif\',serif;color:#C03325;text-align:center"></div></form>';
  var form=box.querySelector('form'),inp=box.querySelector('input'),err=box.querySelector('.e'),btn=box.querySelector('button');
  inp.focus();
  form.addEventListener('submit',function(ev){ev.preventDefault();
