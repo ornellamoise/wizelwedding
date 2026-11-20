@@ -37,6 +37,7 @@ function fit(){var w=window.innerWidth,r=document.getElementById('page');
  var z=Math.min(w/W,1)*0.72; if(r)r.style.zoom=z;var lw=w/z,m=-(lw-W)/2;document.querySelectorAll('.fullline').forEach(function(e){e.style.width=lw+'px';e.style.marginLeft=m+'px'});document.querySelectorAll('.fl').forEach(function(e){e.style.left=m+'px';e.style.right=m+'px'});}
 addEventListener('DOMContentLoaded',fit);addEventListener('resize',fit);})();
 </script>
+<style>html{overflow-y:scroll}</style>
 </head>
 <body>
 <div id="page">
