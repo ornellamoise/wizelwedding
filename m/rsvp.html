@@ -185,7 +185,7 @@ addEventListener('DOMContentLoaded',function(){fit();var o=document.getElementBy
 f.addEventListener('submit',function(e){e.preventDefault();
  var b=f.querySelector('button[type=submit]'),err=f.querySelector('.err');err.style.display='none';b.disabled=true;
  fetch(f.dataset.endpoint,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
- .then(function(r){if(!r.ok)throw 0;f.querySelector('.rest').style.display='none';f.querySelector('.merci').style.display='block';})
+ .then(function(r){if(!r.ok)throw 0;f.querySelector('.rest').style.display='none';f.querySelector('.merci').style.display='block';var h=document.querySelector('.wrap > img');if(h)h.style.display='none';})
  .catch(function(){err.style.display='block';b.disabled=false;});});})();
 </script>
 <script>(function(){var k=document.getElementById("k3");if(!k)return;k.addEventListener("change",function(){if(!k.checked)return;document.documentElement.classList.add("nope");document.getElementById("qd").checked=true;document.getElementById("oui").checked=true;});var o=document.getElementById("oui");o.addEventListener("change",function(){var d=document.documentElement;if(!o.checked&&d.classList.contains("nope")){d.classList.remove("nope");document.getElementById("qd").checked=false;}});})();</script>
