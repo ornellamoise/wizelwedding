@@ -51,12 +51,12 @@ function open_(a){
  form.addEventListener('submit',function(ev){ev.preventDefault();
   var tel=inp.value.replace(/\D/g,'');
   if(tel.length<9){err.textContent='Numéro invalide.';return}
-  btn.disabled=true;err.textContent='';
+  btn.disabled=true;err.textContent='';try{mbegin()}catch(e){}
   fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tel:tel})})
   .then(function(r){if(r.status===404)throw 404;if(!r.ok)throw 0;return r.json()})
   .then(function(g){guest={p:g.prenom,f:g.nom,t:tel,a:g.acc||[]};save(guest);
    location.href='programme.html';})
-  .catch(function(c){btn.disabled=false;err.textContent=c===404?'Numéro non reconnu. Contactez Ornella et William.':'Un problème est survenu, réessayez.';});
+  .catch(function(c){mstop();mset(MK,'off');btn.disabled=false;err.textContent=c===404?'Numéro non reconnu. Contactez Ornella et William.':'Un problème est survenu, réessayez.';});
  });
 }
 function welcome(){
@@ -77,4 +77,38 @@ function init(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rsvp);else rsvp();
+
+/* Musique : The Braxtons - The Boss (lecteur YouTube caché + bouton son) */
+var MID='3QV_776uMOY',MK='ww_music',TK='ww_mt',mf=null,mb=null,mon=false;
+function mget(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function mset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function micon(on){mon=on;if(!mb)return;mb.setAttribute('aria-label',on?'Couper la musique':'Activer la musique');mb.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/>'+(on?'<path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/>':'<path d="M17 9l5 6M22 9l-5 6"/>')+'</svg>'}
+function mstart(sec){
+ if(mf||!document.body)return;
+ mf=document.createElement('iframe');mf.setAttribute('allow','autoplay');mf.setAttribute('aria-hidden','true');mf.tabIndex=-1;
+ mf.style.cssText='position:fixed;left:0;bottom:0;width:2px;height:2px;border:0;opacity:0;pointer-events:none';
+ mf.src='https://www.youtube.com/embed/'+MID+'?autoplay=1&loop=1&playlist='+MID+'&playsinline=1&controls=0&enablejsapi=1&start='+(sec||0);
+ mf.addEventListener('load',function(){try{mf.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*')}catch(e){}});
+ document.body.appendChild(mf);
+}
+function mstop(){if(mf){mf.remove();mf=null}micon(false)}
+function mbegin(){mset(MK,'on');mset(TK,String(Date.now()));mstart(0)}
+window.addEventListener('message',function(e){
+ if(String(e.origin).indexOf('youtube.com')<0)return;var d;try{d=JSON.parse(e.data)}catch(x){return}
+ if(d.event==='onStateChange'&&d.info===1)micon(true);
+ if(d.event==='infoDelivery'&&d.info&&d.info.playerState===1)micon(true);
+ if(d.event==='onError'){mstop();mset(MK,'off');if(mb){mb.remove();mb=null}}
+});
+function musicUI(){
+ if(!guest||/(^|\/)(index\.html)?$/.test(location.pathname))return;
+ var m=location.pathname.indexOf('/m/')>=0;
+ mb=document.createElement('button');mb.type='button';
+ mb.style.cssText='position:absolute;top:'+(m?'6px':'10px')+';left:'+(m?'8px':'18px')+';z-index:50;width:36px;height:36px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent';
+ document.body.appendChild(mb);micon(false);
+ mb.addEventListener('click',function(){
+  if(mon){mstop();mset(MK,'off')}else{mstop();mbegin()}
+ });
+ if(mget(MK)==='on'){var t0=parseInt(mget(TK),10)||Date.now();mstart(Math.max(0,Math.floor((Date.now()-t0)/1000))%225)}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',musicUI);else musicUI();
 })();
