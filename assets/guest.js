@@ -79,12 +79,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rsvp);else rsvp();
 
 /* Musique : The Braxtons - The Boss (lecteur YouTube caché + bouton son) */
+var NOMUSIC=location.pathname.indexOf('/m/')>=0;
 var MID='3QV_776uMOY',MK='ww_music',TK='ww_mt',mf=null,mb=null,mon=false;
 function mget(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function mset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function micon(on){mon=on;if(!mb)return;mb.setAttribute('aria-label',on?'Couper la musique':'Activer la musique');mb.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/>'+(on?'<path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/>':'<path d="M17 9l5 6M22 9l-5 6"/>')+'</svg>'}
 var AUD=null,AUDOK=false,AUDURL=(location.pathname.indexOf('/m/')>=0?'../':'')+'assets/musique.mp3';
-try{fetch(AUDURL,{method:'HEAD'}).then(function(r){AUDOK=r.ok&&/audio|mpeg|octet/.test(r.headers.get('content-type')||'audio')}).catch(function(){})}catch(e){}
+if(!NOMUSIC)try{fetch(AUDURL,{method:'HEAD'}).then(function(r){AUDOK=r.ok&&/audio|mpeg|octet/.test(r.headers.get('content-type')||'audio')}).catch(function(){})}catch(e){}
 function mstart(sec){
  if(AUDOK){
   if(AUD)return;AUD=new Audio(AUDURL);AUD.loop=true;AUD.preload='auto';
@@ -100,7 +101,7 @@ function mstart(sec){
  document.body.appendChild(mf);
 }
 function mstop(){if(AUD){AUD.pause();AUD=null}if(mf){mf.remove();mf=null}micon(false)}
-function mbegin(){mset(MK,'on');mset(TK,String(Date.now()));mstart(0)}
+function mbegin(){if(NOMUSIC)return;mset(MK,'on');mset(TK,String(Date.now()));mstart(0)}
 window.addEventListener('message',function(e){
  if(String(e.origin).indexOf('youtube.com')<0)return;var d;try{d=JSON.parse(e.data)}catch(x){return}
  if(d.event==='onStateChange'&&d.info===1)micon(true);
@@ -118,11 +119,13 @@ function mbtn(){
 function buildShell(target){
  if(document.getElementById('wwshell'))return;
  if(!OKP.test(target))target='programme.html';
+ if(NOMUSIC){location.href=target;return}
  var f=document.createElement('iframe');f.id='wwshell';f.src=target;
  f.style.cssText='position:fixed;left:0;top:0;width:100%;height:100%;border:0;background:#FCF7EC;z-index:100';
  document.documentElement.style.overflow='hidden';document.body.appendChild(f);mbtn();
 }
 function shellInit(){
+ if(NOMUSIC)return;
  var file=location.pathname.split('/').pop()||'index.html';
  var framed=false;try{framed=window.top!==window}catch(e){framed=true}
  if(framed||!guest)return;
