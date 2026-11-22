@@ -53,11 +53,24 @@ a{color:inherit;text-decoration:none}
 .no{position:absolute;left:320px;top:12px;pointer-events:none;transition:left .3s cubic-bezier(.3,1.4,.5,1),top .3s cubic-bezier(.3,1.4,.5,1)}
 .cell{position:absolute;width:280px;height:100px}
 .c2{left:280px;top:0}.c3{left:0;top:100px}.c4{left:280px;top:100px}.c5{left:0;top:200px}.c6{left:280px;top:200px}
+@media (hover:none){
 .c2:hover ~ .no{left:40px;top:212px}
 .c5:hover ~ .no{left:320px;top:112px}
 .c4:hover ~ .no{left:40px;top:112px}
 .c3:hover ~ .no{left:320px;top:212px}
 .c6:hover ~ .no{left:320px;top:12px}
+}
+@media (hover:hover){
+.cell{pointer-events:none}
+.c2{pointer-events:auto}
+.k1:checked ~ .step1 .c2{pointer-events:none}
+.k1:checked ~ .step1 .c5{pointer-events:auto}
+.k2:checked ~ .step1 .c5{pointer-events:none}
+.k2:checked ~ .step1 .c4{pointer-events:auto}
+.k3:checked ~ .step1 .cell{pointer-events:none}
+.k1:checked ~ .step1 .no{left:40px;top:212px}
+.k2:checked ~ .step1 .no{left:320px;top:112px}
+}
 .qd{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 .rest{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%}
 .quiz{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%}
