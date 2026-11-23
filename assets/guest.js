@@ -79,7 +79,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rsvp);else rsvp();
 
 /* Musique : The Braxtons - The Boss (lecteur YouTube caché + bouton son) */
-var NOMUSIC=location.pathname.indexOf('/m/')>=0;
+var NOMUSIC=true;
 var MID='3QV_776uMOY',MK='ww_music',TK='ww_mt',mf=null,mb=null,mon=false;
 function mget(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function mset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
